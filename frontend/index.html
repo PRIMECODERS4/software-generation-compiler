@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Generation Compiler</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">⚙️</span>
+                <h1>Software Generation Compiler</h1>
+            </div>
+            <p class="subtitle">Natural Language → Structured Config → Validated → Executable Application</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Pipeline Diagram -->
+        <section class="pipeline-diagram">
+            <div class="pipeline-stage" id="ps-intent">
+                <div class="stage-number">1</div>
+                <div class="stage-label">Intent Extraction</div>
+                <div class="stage-status" id="status-intent">—</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage" id="ps-design">
+                <div class="stage-number">2</div>
+                <div class="stage-label">System Design</div>
+                <div class="stage-status" id="status-design">—</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage" id="ps-schema">
+                <div class="stage-number">3</div>
+                <div class="stage-label">Schema Generation</div>
+                <div class="stage-status" id="status-schema">—</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage" id="ps-refine">
+                <div class="stage-number">4</div>
+                <div class="stage-label">Refinement</div>
+                <div class="stage-status" id="status-refine">—</div>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <label for="prompt-input">Describe the application you want to build:</label>
+            <textarea id="prompt-input" rows="4" placeholder='e.g. "Build a CRM with login, contacts, dashboard, role-based access, and premium plan with payments. Admins can see analytics."'></textarea>
+            <div class="input-actions">
+                <button id="compile-btn" onclick="runCompile()">Compile</button>
+                <button id="eval-btn" class="secondary" onclick="runEvaluation()">Run Evaluation (20 prompts)</button>
+                <div class="sample-prompts">
+                    <span>Try:</span>
+                    <button class="sample" onclick="loadSample(0)">CRM</button>
+                    <button class="sample" onclick="loadSample(1)">E-commerce</button>
+                    <button class="sample" onclick="loadSample(2)">Project Mgmt</button>
+                    <button class="sample" onclick="loadSample(3)">Blog</button>
+                    <button class="sample" onclick="loadSample(4)">LMS</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Compiling… running 4-stage pipeline</p>
+        </div>
+
+        <!-- Results Section -->
+        <section id="results" class="results hidden">
+            <!-- Metrics Bar -->
+            <div class="metrics-bar" id="metrics-bar"></div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" data-tab="overview" onclick="switchTab('overview')">Overview</button>
+                <button class="tab" data-tab="intent" onclick="switchTab('intent')">Intent</button>
+                <button class="tab" data-tab="design" onclick="switchTab('design')">Design</button>
+                <button class="tab" data-tab="ui-schema" onclick="switchTab('ui-schema')">UI Schema</button>
+                <button class="tab" data-tab="api-schema" onclick="switchTab('api-schema')">API Schema</button>
+                <button class="tab" data-tab="db-schema" onclick="switchTab('db-schema')">DB Schema</button>
+                <button class="tab" data-tab="auth-schema" onclick="switchTab('auth-schema')">Auth Schema</button>
+                <button class="tab" data-tab="code" onclick="switchTab('code')">Generated Code</button>
+                <button class="tab" data-tab="validation" onclick="switchTab('validation')">Validation</button>
+                <button class="tab" data-tab="raw" onclick="switchTab('raw')">Raw JSON</button>
+            </div>
+
+            <div class="tab-content" id="tab-content"></div>
+        </section>
+
+        <!-- Evaluation Results -->
+        <section id="eval-results" class="results hidden">
+            <h2>Evaluation Report</h2>
+            <div id="eval-content"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Software Generation Compiler v1.0 — Multi-stage pipeline with validation & repair engine</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
