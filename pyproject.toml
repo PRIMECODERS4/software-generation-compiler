@@ -1,0 +1,16 @@
+[project]
+name = "software-generation-compiler"
+version = "1.0.0"
+description = "Multi-stage compiler: natural language → structured config → validated → executable application"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]==0.115.12",
+    "uvicorn[standard]==0.34.2",
+    "pydantic==2.11.1",
+    "python-multipart==0.0.20",
+    "openai==1.78.1",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
